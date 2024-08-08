@@ -1,0 +1,81 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="flex justify-between mb-5 mt-10">
+    <input
+      [(ngModel)]="searchName"
+      (ngModelChange)="onSearchChange()"
+      placeholder="Search by name"
+      class="w-1/3 p-2 border border-gray-300 rounded shadow-inner focus:border-blue-500"
+    />
+    <select
+      [(ngModel)]="selectedType"
+      (ngModelChange)="onFilterChange()"
+      class="w-1/3 p-2 border border-gray-300 rounded shadow-inner focus:border-blue-500"
+    >
+      <option value="">All Types</option>
+      <option value="Cycling">Cycling</option>
+      <option value="Running">Running</option>
+      <option value="Swimming">Swimming</option>
+    </select>
+  </div>
+
+  <div class="flex justify-center">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-blue-500 text-white">
+        <tr>
+          <th
+            class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+          >
+            Name
+          </th>
+          <th
+            class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+          >
+            Workouts
+          </th>
+          <th
+            class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+          >
+            Number of Workouts
+          </th>
+          <th
+            class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+          >
+            Total Workout Minutes
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <tr *ngFor="let user of paginatedData">
+          <td class="px-6 py-4 whitespace-nowrap">{{ user.name }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{ getWorkoutNames(user.workouts) }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{ getWorkoutCount(user.workouts) }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{ getTotalMinutes(user.workouts) }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flex justify-center items-center mt-5">
+    <button
+      (click)="prevPage()"
+      [disabled]="currentPage === 1"
+      class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
+    >
+      Previous
+    </button>
+    <span class="mx-4 text-lg">Page {{ currentPage }} of {{ totalPages }}</span>
+    <button
+      (click)="nextPage()"
+      [disabled]="currentPage === totalPages"
+      class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
+    >
+      Next
+    </button>
+  </div>
+</div>
