@@ -1,7 +1,10 @@
 {
   "name": "workout-app",
   "version": "0.0.0",
+  "homepage": "https://ymaamri.github.io/workout-app",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist/workout-app",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -32,6 +35,7 @@
     "@angular/compiler-cli": "^18.1.0",
     "@angular/core": "^18.1.4",
     "@types/jasmine": "~5.1.0",
+    "gh-pages": "^6.1.1",
     "jasmine": "^5.2.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
